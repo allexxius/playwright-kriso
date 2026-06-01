@@ -24,7 +24,6 @@ test.describe('Navigate Products via Filters', () => {
     const context = await browser.newContext();
     page = await context.newPage();
     await page.goto('https://www.kriso.ee/', { waitUntil: 'domcontentloaded' });
-    await page.waitForLoadState('networkidle').catch(() => {});
     const consentButton = page.getByRole('button', { name: /Nõustun|I agree|Accept/i });
     if (await consentButton.isVisible({ timeout: 5000 }).catch(() => false)) {
       await consentButton.click();
