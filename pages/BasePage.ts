@@ -21,8 +21,7 @@ export class BasePage {
   }
 
   async verifyLogo() {
-    const logo = this.page.getByRole('link', { name: /Kriso/i }).first();
-    await expect(logo).toBeVisible({ timeout: 10000 });
+    await expect(this.logo).toBeVisible();
   }
 
   async searchByKeyword(keyword: string) {
