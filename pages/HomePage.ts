@@ -28,7 +28,8 @@ export class HomePage extends BasePage {
   }
 
   async openUrl() {
-    await this.page.goto(this.url);
+    await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
+    await this.page.waitForLoadState('networkidle').catch(() => {});
   }
 
   async verifyResultsCountMoreThan(minCount: number) {

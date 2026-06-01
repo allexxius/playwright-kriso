@@ -24,7 +24,7 @@ test.describe('Navigate Products via Filters (POM)', () => {
     const context = await browser.newContext();
     page = await context.newPage();
     productPage = new ProductPage(page);
-    await page.goto('https://www.kriso.ee/', { waitUntil: 'domcontentloaded' });
+    await productPage.openUrl();
     await productPage.acceptCookies();
   });
 

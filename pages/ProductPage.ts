@@ -2,8 +2,15 @@ import { Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class ProductPage extends BasePage {
+  private readonly url = 'https://www.kriso.ee/';
+
   constructor(page: Page) {
     super(page);
+  }
+
+  async openUrl() {
+    await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
+    await this.page.waitForLoadState('networkidle').catch(() => {});
   }
 
   async openMusicBooksSection() {

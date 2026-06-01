@@ -21,7 +21,9 @@ export class BasePage {
   }
 
   async verifyLogo() {
-    await expect(this.logo).toBeVisible();
+    await this.page.waitForLoadState('networkidle').catch(() => {});
+    const logo = this.page.getByRole('link', { name: /Kriso/i }).first();
+    await expect(logo).toBeVisible({ timeout: 10000 });
   }
 
   async searchByKeyword(keyword: string) {
