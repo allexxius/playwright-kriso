@@ -47,9 +47,8 @@ test.describe('Search for Books by Keywords', () => {
       await input.click();
       await input.fill('xqzwmfkj');
       await page.getByRole('button', { name: /Search|Otsi/i }).first().click();
-      const noResultsMessage = page.locator('.msg.msg-info');
+      const noResultsMessage = page.getByText(/ei leitud|did not find any match/i);
       await expect(noResultsMessage).toBeVisible();
-      await expect(noResultsMessage).toContainText(/ei leitud|did not find any match/i);
     });
 
     test('Test search results contain keyword', async () => {
